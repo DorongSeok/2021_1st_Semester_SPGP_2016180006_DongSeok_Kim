@@ -1,0 +1,32 @@
+.idea
+Android Studio의 경우 버전 제어에 저장해야 하는 파일은 gradle을 사용하여 명령줄에서 애플리케이션을 빌드하는 데 필요한 파일뿐이다.
+따라서 이 폴더의 파일들을 제외해도 된다.
+
+*.apk
+*.ap_
+어플리케이션 파일을 빌드하는데 사용되는 파일
+Android 플랫폼에 배포할 수 있도록 설계된 파일 형식입니다. 
+
+*.dex
+DVM(Dalvik Virtual Machine)을 위한 실행 파일입니다. JVM을 위한 .class 파일들과 같은 역할을 한다.
+
+bin/
+gen/
+빌드과정에서 생성된 폴더들이다.
+
+Thumbs.db
+파일은 특정 폴더의 이미지의 썸네일 버전의 캐시 복사본을 저장하는 역할을 한다.
+
+.classpath
+class들의 경로를 나타냄 
+
+*.iml
+Intelli J IDEA Module 의 약자로, Intelli J 의 Module 구성에 대해 xml 형태로 기술해 놓은 파일이다
+협업을할때 다른 os와 다른 ide 환경등을 사용한다면 계속 change가 발생하기 때문에 ignore
+
+build/
+빌드에 사용되는 폴더들
+
+
+정리
+대부분 협업시 다른 os 환경이나 ide 환경을 사용할때 충돌이 일어날 수 있거나, 빌드에 사용되는 파일들이 많았다.
