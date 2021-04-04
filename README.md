@@ -11,7 +11,6 @@ Pokeman
 > * 핵심 메카닉   
 > 플레이어는 피카츄가 갸라도스의 지느러미에 걸리지 않도록 좌우로 이동해가며 갸라도스의 몸통을 공격하며 화면 상단의 게이지가 전부 소모되거나 피카츄가 갸라도스의 지느러미에 부딪치면 게임이 끝나게 된다.   
 >   
-> <img src="./image/GameScene.JPG" width="297px" height="528px" title="GameScene" alt="GameScene"></img><br/>
 > <img src="./image/scene_1.png" width="297px" height="528px" title="pikaScene" alt="pikaScene"></img><br/>
 - - -
 ## + 개발 범위
@@ -41,21 +40,27 @@ Pokeman
 - - -
 ## + 예상 게임 실행 흐름
 > * 전체 흐름   
+> <img src="./image/순서도.jpg" width="370px" height="832px" title="순서도" alt="순서도"></img><br/>
 >    
 > * 로비 씬   
 > 게임 플레이, 게임 종료 버튼 클릭(Click) 가능   
+> <img src="./image/LobbyScene.JPG" width="297px" height="528px" title="LobbyScene" alt="LobbyScene"></img><br/>
 >     
 > * 게임 준비 씬   
 > 플레이, 캐릭터 선택 버튼 클릭(Click) 가능   
+> <img src="./image/GameScene.JPG" width="297px" height="528px" title="ReadyScene" alt="ReadyScene"></img><br/>
 >    
 > * 게임 플레이 씬   
-> 화면의 좌우를 터치하여 플레이어 좌우로 이동하며 공격, 장애물에 충돌하거나 게이지가 모두 소모되면 게임종료   
+> 화면의 좌우를 터치하여 플레이어 좌우로 이동하며 공격, 장애물에 충돌하거나 게이지가 모두 소모되면 게임종료  
+> <img src="./image/GamePlayScene.JPG" width="297px" height="528px" title="GamePlayScene" alt="GamePlayScene"></img><br/> 
 >    
 > * 캐릭터 선택 씬   
 > 스코어에 따라 잠금 해제되는 캐릭터 선택가능    
+> <img src="./image/Shop.JPG" width="297px" height="528px" title="Shop" alt="Shop"></img><br/>
 >    
 > * 스코어 씬   
 > 게임 스코어 출력, 다시하기 버튼 클릭 시 게임 재시작   
+> <img src="./image/ScoreScene.JPG" width="297px" height="528px" title="ScoreScene" alt="ScoreScene"></img><br/>
 - - -
 ## + 개발 일정
 > * 1주   
