@@ -10,6 +10,8 @@ Pokeman
 >    
 > * 핵심 메카닉   
 > 플레이어는 피카츄가 갸라도스의 지느러미에 걸리지 않도록 좌우로 이동해가며 갸라도스의 몸통을 공격하며 화면 상단의 게이지가 전부 소모되거나 피카츄가 갸라도스의 지느러미에 부딪치면 게임이 끝나게 된다.   
+>   
+<img src="./image/scene_1.png" width="297px" height="528px" title="pikaScene" alt="pikaScene"></img><br/>
 - - -
 ## + 개발 범위
 > * 맵   
