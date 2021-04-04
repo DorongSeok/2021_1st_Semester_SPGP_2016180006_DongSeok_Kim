@@ -40,7 +40,7 @@ Pokeman
 - - -
 ## + 예상 게임 실행 흐름
 > * 전체 흐름   
-> <img src="./image/순서도.jpg" width="370px" height="832px" title="순서도" alt="순서도"></img><br/>
+> <img src="./image/순서도.jpg" width="370px" height="382px" title="순서도" alt="순서도"></img><br/>
 >    
 > * 로비 씬   
 > 게임 플레이, 게임 종료 버튼 클릭(Click) 가능   
