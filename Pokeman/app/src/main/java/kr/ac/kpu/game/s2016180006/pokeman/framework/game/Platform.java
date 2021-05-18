@@ -1,8 +1,8 @@
-package kr.ac.kpu.game.s2016180006.cookierun.framework.game;
+package kr.ac.kpu.game.s2016180006.pokeman.framework.game;
 
-import kr.ac.kpu.game.s2016180006.cookierun.R;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.object.ImageObject;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.pokeman.R;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.object.ImageObject;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class Platform extends ImageObject {
     public enum Type {

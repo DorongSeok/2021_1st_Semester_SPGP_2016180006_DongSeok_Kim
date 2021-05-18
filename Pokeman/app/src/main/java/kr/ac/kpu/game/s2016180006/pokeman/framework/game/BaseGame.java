@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180006.cookierun.framework.game;
+package kr.ac.kpu.game.s2016180006.pokeman.framework.game;
 
 
 import android.graphics.Canvas;
@@ -7,9 +7,9 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.GameObject;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.Recycleable;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.Recycleable;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class BaseGame {
     private static final String TAG = BaseGame.class.getSimpleName();

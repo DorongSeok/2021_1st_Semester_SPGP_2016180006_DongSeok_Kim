@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180006.cookierun.framework.utils;
+package kr.ac.kpu.game.s2016180006.pokeman.framework.utils;
 
 import android.content.Context;
 import android.media.AudioAttributes;

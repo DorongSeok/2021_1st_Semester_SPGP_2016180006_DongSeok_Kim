@@ -1,13 +1,13 @@
-package kr.ac.kpu.game.s2016180006.cookierun.game;
+package kr.ac.kpu.game.s2016180006.pokeman.game;
 
 import android.view.MotionEvent;
 
-import kr.ac.kpu.game.s2016180006.cookierun.R;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.game.BaseGame;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.game.Platform;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.GameObject;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.object.HorizontalScrollBackground;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.pokeman.R;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.game.Platform;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.object.HorizontalScrollBackground;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class MainGame extends BaseGame {
     private Player player;

@@ -1,8 +1,8 @@
-package kr.ac.kpu.game.s2016180006.cookierun.framework.utils;
+package kr.ac.kpu.game.s2016180006.pokeman.framework.utils;
 
 import android.graphics.RectF;
 
-import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.BoxCollidable;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.BoxCollidable;
 
 public class CollisionHelper {
     private static RectF rect1 = new RectF();

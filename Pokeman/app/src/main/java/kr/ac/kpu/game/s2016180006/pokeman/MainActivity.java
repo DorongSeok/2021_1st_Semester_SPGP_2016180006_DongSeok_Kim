@@ -1,10 +1,10 @@
-package kr.ac.kpu.game.s2016180006.cookierun;
+package kr.ac.kpu.game.s2016180006.pokeman;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import kr.ac.kpu.game.s2016180006.cookierun.game.MainGame;
+import kr.ac.kpu.game.s2016180006.pokeman.game.MainGame;
 
 public class MainActivity extends AppCompatActivity {
 

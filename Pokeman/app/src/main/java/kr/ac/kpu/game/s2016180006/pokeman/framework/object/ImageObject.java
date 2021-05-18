@@ -1,13 +1,13 @@
-package kr.ac.kpu.game.s2016180006.cookierun.framework.object;
+package kr.ac.kpu.game.s2016180006.pokeman.framework.object;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import kr.ac.kpu.game.s2016180006.cookierun.framework.bitmap.GameBitmap;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.GameObject;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap.GameBitmap;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class ImageObject implements GameObject {
     protected final Bitmap bitmap;

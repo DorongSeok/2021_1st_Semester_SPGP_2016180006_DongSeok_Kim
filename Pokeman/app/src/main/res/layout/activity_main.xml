@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView
+    <kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

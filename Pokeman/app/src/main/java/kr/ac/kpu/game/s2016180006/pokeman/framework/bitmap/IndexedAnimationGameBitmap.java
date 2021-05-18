@@ -1,11 +1,11 @@
-package kr.ac.kpu.game.s2016180006.cookierun.framework.bitmap;
+package kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import java.util.ArrayList;
 
-import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class IndexedAnimationGameBitmap extends AnimationGameBitmap{
     private final int frameHeight;

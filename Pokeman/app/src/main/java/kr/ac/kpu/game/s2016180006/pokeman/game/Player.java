@@ -1,15 +1,15 @@
-package kr.ac.kpu.game.s2016180006.cookierun.game;
+package kr.ac.kpu.game.s2016180006.pokeman.game;
 
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.util.Log;
 
-import kr.ac.kpu.game.s2016180006.cookierun.R;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.BoxCollidable;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.GameObject;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.bitmap.IndexedAnimationGameBitmap;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.game.BaseGame;
+import kr.ac.kpu.game.s2016180006.pokeman.R;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.BoxCollidable;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap.IndexedAnimationGameBitmap;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
 
 public class Player implements GameObject, BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();

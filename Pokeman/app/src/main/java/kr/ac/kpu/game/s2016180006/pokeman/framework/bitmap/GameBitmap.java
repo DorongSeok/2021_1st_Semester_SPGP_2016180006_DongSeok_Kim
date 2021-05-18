@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180006.cookierun.framework.bitmap;
+package kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -8,7 +8,7 @@ import android.graphics.RectF;
 
 import java.util.HashMap;
 
-import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class GameBitmap {
     private static HashMap<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();

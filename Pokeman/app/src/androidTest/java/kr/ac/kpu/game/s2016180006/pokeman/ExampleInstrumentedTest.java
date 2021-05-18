@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180006.cookierun;
+package kr.ac.kpu.game.s2016180006.pokeman;
 
 import android.content.Context;
 
