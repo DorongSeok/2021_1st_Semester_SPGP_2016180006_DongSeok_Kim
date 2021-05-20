@@ -39,8 +39,7 @@ Pokeman
 > Breath, Attack 캐릭터 애니메이션(총 2개) (100%)  
 - - -
 ## + Git Commit
->
->
+> <img src="./image/GitCommitInsight1.JPG" width="542px" height="260px" title="GitCommitInsight" alt="GitCommitInsight"></img><br/>
 - - -
 ## + 개발 일정
 > * 1주   
