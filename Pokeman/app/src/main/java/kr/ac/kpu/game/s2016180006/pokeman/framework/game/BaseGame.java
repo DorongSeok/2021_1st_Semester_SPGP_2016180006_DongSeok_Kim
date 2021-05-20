@@ -64,7 +64,6 @@ public class BaseGame {
     }
 
     public void draw(Canvas canvas) {
-        //if (!initialized) return;
         for(ArrayList<GameObject> objects : layers) {
             for (GameObject o : objects) {
                 o.draw(canvas);

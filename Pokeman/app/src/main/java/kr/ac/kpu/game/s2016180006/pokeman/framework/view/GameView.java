@@ -16,7 +16,7 @@ import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
 public class GameView extends View {
     private static final String TAG = GameView.class.getSimpleName();
 
-    public static float MULTIPLIER = 2;
+    public static float MULTIPLIER = 10;
     private boolean running;
     private long lastFrame;
     public static GameView view;

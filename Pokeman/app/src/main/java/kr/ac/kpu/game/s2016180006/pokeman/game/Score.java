@@ -8,7 +8,6 @@ import android.graphics.RectF;
 import kr.ac.kpu.game.s2016180006.pokeman.R;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap.GameBitmap;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
-import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class Score implements GameObject {
     private final Bitmap bitmap;
@@ -46,15 +45,15 @@ public class Score implements GameObject {
         int value = this.displayScore;
         int nw = bitmap.getWidth() / 10;
         int nh = bitmap.getHeight();
-        int x = right;
-        int dw = (int)(nw * GameView.MULTIPLIER);
-        int dh = (int)(nh * GameView.MULTIPLIER);
+        int dw = (int)(nw * 3);
+        int dh = (int)(nh * 3);
+        int x = right + dw;
         while(value > 0){
-            int digit = value%10;
-            src.set(digit*nw,0,(digit+1)*nw,nh);
+            int digit = value % 10;
+            src.set(digit * nw,0,(digit + 1)*nw,nh);
             x -= dw;
             dst.set(x, top, x + dw, top + dh);
-            canvas.drawBitmap(bitmap,src,dst,null);
+            canvas.drawBitmap(bitmap, src, dst,null);
 
             value /= 10;
         }

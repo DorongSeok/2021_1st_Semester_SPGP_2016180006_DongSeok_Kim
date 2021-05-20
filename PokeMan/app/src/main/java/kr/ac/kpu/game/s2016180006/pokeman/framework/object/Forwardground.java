@@ -16,14 +16,19 @@ public class Forwardground implements GameObject {
 
     public Forwardground(int resId){
         bitmap = GameBitmap.load(resId);
+        int gap;
+        if(bitmap.getHeight() > GameView.view.getHeight())
+            gap = bitmap.getHeight() - GameView.view.getHeight();
+        else
+            gap = GameView.view.getHeight() - bitmap.getHeight();
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
-        srcRect.set(0,0,w,h);
+        srcRect.set(0,0, w, h);
         float l = 0;
-        float t = GameView.view.getHeight() - bitmap.getWidth();
-        float b = GameView.view.getHeight();
         float r = GameView.view.getWidth();
-        dstRect.set(l,t,r,b);
+        float t = 0;
+        float b = gap + bitmap.getHeight();
+        dstRect.set(l, t, r, b);
     }
 
     @Override

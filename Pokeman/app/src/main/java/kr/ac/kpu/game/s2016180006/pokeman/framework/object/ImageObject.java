@@ -33,6 +33,9 @@ public class ImageObject implements GameObject {
     public float getRight() {
         return dstRect.right;
     }
+    public float getBottom() {
+        return dstRect.bottom;
+    }
 
     @Override
     public void update() {

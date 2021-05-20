@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class IndexedGameBitmap extends GameBitmap{
-    private int  resId,  width, xcount, height,  border,  spacing;
+    private int width, xcount, height,  border,  spacing;
     public IndexedGameBitmap(int resId, int width, int height, int xcount, int border, int spacing){
         super(resId);
         this.width = width;
@@ -22,10 +22,11 @@ public class IndexedGameBitmap extends GameBitmap{
         int x = index % xcount;
         int y = index / xcount ;
         int l = border + x * (width + spacing);
-        int t = border + y * (width + spacing);
+        int t = border + y * (height + spacing);
         int r = l + width;
         int b = t + height;
         Rect rect = new Rect(l,t,r,b);
+        srcRect = rect;
     }
 
     @Override
@@ -38,6 +39,6 @@ public class IndexedGameBitmap extends GameBitmap{
     }
 
     public void draw(Canvas canvas, RectF dstRect){
-        canvas.drawBitmap(bitmap,srcRect,dstRect,null);
+        canvas.drawBitmap(bitmap, srcRect, dstRect,null);
     }
 }

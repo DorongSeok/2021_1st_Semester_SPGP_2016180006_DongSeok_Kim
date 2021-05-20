@@ -7,19 +7,17 @@ import kr.ac.kpu.game.s2016180006.pokeman.R;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap.IndexedAnimationGameBitmap;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class Player implements GameObject {
     private static final String TAG = Player.class.getSimpleName();
-    private static final float GRAVITY = 2000;
-    private static final float JUMP_POWER = 1200;
     private final IndexedAnimationGameBitmap charBitmap;
-    private final float ground_y;
-    private float x, y;
+    public float x, y;
     private int[] ANIM_INDICES_IDLE_L = {100, 101};
     private int[] ANIM_INDICES_IDLE_R = {102, 103};
     private int[] ANIM_INDICES_ATTACK_L = {0, 1};
     private int[] ANIM_INDICES_ATTACK_R = {2, 3};
-    private float tx, ty;
+    private float lx, rx;
 
     private enum State{
         idlel, idler, attackl, attackr,
@@ -39,17 +37,14 @@ public class Player implements GameObject {
 
     private State state = State.idlel;
 
-    public Player(float x, float y) {
-        this.x = x;
+    public Player(float y) {
+        float center = GameView.view.getWidth() / 2;
+        this.lx = center - 350;
+        this.rx = center + 350;
         this.y = y;
-        this.ground_y = y;
+        this.x = lx;
         this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.pikaman, 4.5f, 0);
         setState(State.idlel);
-    }
-
-    public void moveTo(float x, float y) {
-        this.tx = x;
-        this.ty = this.y;
     }
 
     public void update() {
@@ -60,11 +55,15 @@ public class Player implements GameObject {
         charBitmap.draw(canvas,x,y);
     }
 
-    public void attack(int direct) {
-
-        if(direct == 1)
-            this.state = state.attackl;
-        else
-            this.state = state.attackr;
+    public void attack(float x) {
+        float centerX = GameView.view.getWidth() / 2;
+        if(x < centerX) {
+            setState(state.attackl);
+            this.x = lx;
+        }
+        else {
+            setState(state.attackr);
+            this.x = rx;
+        }
     }
 }
