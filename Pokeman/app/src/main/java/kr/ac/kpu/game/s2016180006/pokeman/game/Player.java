@@ -2,12 +2,11 @@ package kr.ac.kpu.game.s2016180006.pokeman.game;
 
 
 import android.graphics.Canvas;
-import android.graphics.RectF;
 
 import kr.ac.kpu.game.s2016180006.pokeman.R;
-import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap.IndexedAnimationGameBitmap;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
 
 public class Player implements GameObject {
     private static final String TAG = Player.class.getSimpleName();
@@ -16,71 +15,56 @@ public class Player implements GameObject {
     private final IndexedAnimationGameBitmap charBitmap;
     private final float ground_y;
     private float x, y;
-    private float vertSpeed;
-    private int[] ANIM_INDICES_RUNNING = {100, 101, 102, 103};
-    private int[] ANIM_INDICES_JUMP = {7,8};
-    private int[] ANIM_INDICES_DOUBLE_JUMP = {1,2,3,4};
+    private int[] ANIM_INDICES_IDLE_L = {100, 101};
+    private int[] ANIM_INDICES_IDLE_R = {102, 103};
+    private int[] ANIM_INDICES_ATTACK_L = {0, 1};
+    private int[] ANIM_INDICES_ATTACK_R = {2, 3};
+    private float tx, ty;
 
     private enum State{
-        running, jump, doublejump,slide,hit,
+        idlel, idler, attackl, attackr,
     }
 
     public void setState(State state) {
         this.state = state;
-        int[] indices = ANIM_INDICES_RUNNING;
+        int[] indices = ANIM_INDICES_IDLE_L;
         switch (state) {
-            case running : indices = ANIM_INDICES_RUNNING;break;
-            case jump: indices = ANIM_INDICES_JUMP;break;
-            case doublejump: indices = ANIM_INDICES_DOUBLE_JUMP;break;
+            case idlel : indices = ANIM_INDICES_IDLE_L; break;
+            case idler: indices = ANIM_INDICES_IDLE_R; break;
+            case attackl: indices = ANIM_INDICES_ATTACK_L; break;
+            case attackr: indices = ANIM_INDICES_ATTACK_R; break;
         }
         charBitmap.setIndices(indices);
     }
 
-    private State state = State.running;
+    private State state = State.idlel;
 
     public Player(float x, float y) {
         this.x = x;
         this.y = y;
         this.ground_y = y;
-        this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.cookie, 4.5f, 0);
-        setState(State.running);
+        this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.pikaman, 4.5f, 0);
+        setState(State.idlel);
     }
 
     public void moveTo(float x, float y) {
         this.tx = x;
-        //this.ty = this.y;
+        this.ty = this.y;
     }
 
     public void update() {
         BaseGame game = BaseGame.get();
-        if(state == State.jump || state == State.doublejump) {
-            float y = this.y + vertSpeed * game.frameTime;
-            vertSpeed += GRAVITY * game.frameTime;
-            if(y >= ground_y){
-                y = ground_y;
-                setState(State.running);
-            }
-            this.y = y;
-        }
     }
 
     public void draw(Canvas canvas) {
         charBitmap.draw(canvas,x,y);
     }
 
-    public void jump() {
-//        if(state != State.running && state != State.jump && state != State.slide){
-//            return;
-//        }
-        if (state == State.running){
-            setState(State.jump);
-            vertSpeed = -JUMP_POWER;
-        }
-        else if (state == State.jump){
-            setState(State.doublejump);
-            vertSpeed = -JUMP_POWER;
-        } else{
-            return;
-        }
+    public void attack(int direct) {
+
+        if(direct == 1)
+            this.state = state.attackl;
+        else
+            this.state = state.attackr;
     }
 }

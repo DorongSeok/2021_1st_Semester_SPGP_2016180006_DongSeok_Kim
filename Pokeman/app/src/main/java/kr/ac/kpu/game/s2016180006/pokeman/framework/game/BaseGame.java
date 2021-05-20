@@ -16,9 +16,6 @@ public class BaseGame {
     private static BaseGame instance;
 
     public static BaseGame get() {
-//        if (instance == null) {
-//            instance = new BaseGame();
-//        }
         return instance;
     }
     public float frameTime;

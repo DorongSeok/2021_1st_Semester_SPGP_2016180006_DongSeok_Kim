@@ -11,7 +11,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
-import kr.ac.kpu.game.s2016180006.pokeman.framework.utils.Sound;
 
 
 public class GameView extends View {
@@ -25,7 +24,6 @@ public class GameView extends View {
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         GameView.view = this;
-        Sound.init(context);
         running = true;
     }
 
@@ -77,19 +75,6 @@ public class GameView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         BaseGame game = BaseGame.get();
         return game.onTouchEvent(event);
-    }
-
-
-    public void pauseGame() {
-        running = false;
-    }
-
-    public void resumeGame() {
-        if (!running) {
-            running = true;
-            lastFrame = 0;
-            requestCallback();
-        }
     }
 }
 

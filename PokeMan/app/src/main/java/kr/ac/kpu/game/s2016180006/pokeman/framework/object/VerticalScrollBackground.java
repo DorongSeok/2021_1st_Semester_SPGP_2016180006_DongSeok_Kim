@@ -10,14 +10,14 @@ import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
-public class HorizontalScrollBackground implements GameObject {
+public class VerticalScrollBackground implements GameObject {
     private final Bitmap bitmap;
     private final float speed;
     private Rect srcRect = new Rect();
     private RectF dstRect = new RectF();
     private float scroll;
 
-    public HorizontalScrollBackground(int resId, int speed){
+    public VerticalScrollBackground(int resId, int speed){
         this.speed = speed * GameView.MULTIPLIER;
         bitmap = GameBitmap.load(resId);
         int w = bitmap.getWidth();
@@ -25,8 +25,8 @@ public class HorizontalScrollBackground implements GameObject {
         srcRect.set(0,0,w,h);
         float l = 0;// x - w / 2 * GameView.MULTIPLIER;
         float t = 0;// - h / 2 * GameView.MULTIPLIER;
-        float b = GameView.view.getHeight();
-        float r = b * w / h;
+        float r = GameView.view.getWidth();
+        float b = r * h / w;
         dstRect.set(l,t,r,b);
     }
 
@@ -43,14 +43,14 @@ public class HorizontalScrollBackground implements GameObject {
         int vh = GameView.view.getHeight();
         int iw = bitmap.getWidth();
         int ih = bitmap.getHeight();
-        int dw = vh * iw / ih;
-        int curr = (int)(scroll % dw);
-        if(curr > 0) curr -= dw;
+        int dh = vw * ih / iw;
+        int curr = (int)(scroll % dh);
+        if(curr > 0) curr -= dh;
 
-        while(curr < vw){
-            dstRect.set(curr,0,curr+dw,vh);
+        while(curr < vh){
+            dstRect.set(0,curr,vw,curr+dh);
             canvas.drawBitmap(bitmap,srcRect,dstRect, null);
-            curr += dw;
+            curr += dh;
         }
     }
 }

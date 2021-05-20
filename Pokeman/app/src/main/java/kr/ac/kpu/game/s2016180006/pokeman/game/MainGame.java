@@ -2,10 +2,11 @@ package kr.ac.kpu.game.s2016180006.pokeman.game;
 
 import android.view.MotionEvent;
 
-import java.util.ArrayList;
-
+import kr.ac.kpu.game.s2016180006.pokeman.R;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.object.Forwardground;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.object.VerticalScrollBackground;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class MainGame extends BaseGame {
@@ -13,12 +14,8 @@ public class MainGame extends BaseGame {
     private Score score;
     private boolean initialized;
 
-    public ArrayList<GameObject> objectsAt(Layer layer) {
-        return objectsAt(layer.ordinal());
-    }
-
     public  enum Layer{
-        bg, platform, item, player, ui, controller, LAYER_COUNT
+        bg, fg, player, ui, LAYER_COUNT
     }
 
     public void add(Layer layer, GameObject obj){
@@ -42,6 +39,12 @@ public class MainGame extends BaseGame {
         score.setScore(0);
         add(Layer.ui, score);
 
+        VerticalScrollBackground bg = new VerticalScrollBackground(R.mipmap.poke_bg, 50);
+        add(Layer.bg, bg);
+
+        Forwardground fg = new Forwardground(R.mipmap.poke_fg);
+        add(Layer.fg, fg);
+
         initialized = true;
         return true;
     }
@@ -49,15 +52,13 @@ public class MainGame extends BaseGame {
     @Override
     public void update() {
         super.update();
-
-        // collision check
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
-        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE) {
-            player.jump();
+        if (action == MotionEvent.ACTION_DOWN) {
+            player.attack(1);
             return true;
         }
         return false;

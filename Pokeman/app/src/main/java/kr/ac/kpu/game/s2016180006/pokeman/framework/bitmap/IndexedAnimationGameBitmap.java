@@ -12,8 +12,8 @@ public class IndexedAnimationGameBitmap extends AnimationGameBitmap{
 
     public IndexedAnimationGameBitmap(int resId, float framePerSecond, int frameCount){
         super(resId, framePerSecond, frameCount);
-        this.frameWidth = 270;
-        this.frameHeight = 270;
+        this.frameWidth = 50;
+        this.frameHeight = 32;
     }
 
     protected ArrayList<Rect> srcRects;
@@ -22,10 +22,10 @@ public class IndexedAnimationGameBitmap extends AnimationGameBitmap{
         for(int index : indices){
             int x = index % 100;
             int y = index / 100;
-            int l = 2 + x * 272;
-            int t = 2 + y * 272;
-            int r = l + 270;
-            int b = t + 270;
+            int l = x * 50;
+            int t = y * 32;
+            int r = l + 50;
+            int b = t + 32;
             srcRects.add(new Rect(l,t,r,b));
         }
         frameCount = indices.length;
