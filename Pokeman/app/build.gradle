@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "kr.ac.kpu.game.s2016180006.cookierun"
+        applicationId "kr.ac.kpu.game.s2016180006.pokeman"
         minSdkVersion 22
         targetSdkVersion 30
         versionCode 1

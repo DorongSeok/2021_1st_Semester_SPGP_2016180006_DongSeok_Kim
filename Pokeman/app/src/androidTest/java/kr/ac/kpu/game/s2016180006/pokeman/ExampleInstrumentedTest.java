@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("kr.ac.kpu.game.s2016180006.cookierun", appContext.getPackageName());
+        assertEquals("kr.ac.kpu.game.s2016180006.pokeman", appContext.getPackageName());
     }
 }
