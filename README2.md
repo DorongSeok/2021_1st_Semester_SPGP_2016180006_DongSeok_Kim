@@ -59,7 +59,7 @@ Pokeman
 >    
 > * Score     
 > 그림 구성 : 숫자로 구성(리소스 교체 예정)   
-> <img src="./image/number_24x32.JPG" width="240px" height="32px" title="number_24x32" alt="number_24x32"></img><br/>
+> <img src="./image/number_24x32.png" width="240px" height="32px" title="number_24x32" alt="number_24x32"></img><br/>
 > 동작 구성
 > 플레이어의 터치 횟수가 곧 점수이다.   
 > 터치 횟수만큼 화면의 상단 중앙에 표시된다.
