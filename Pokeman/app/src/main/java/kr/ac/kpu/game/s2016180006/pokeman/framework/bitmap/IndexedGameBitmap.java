@@ -31,8 +31,8 @@ public class IndexedGameBitmap extends GameBitmap{
 
     @Override
     public void draw(Canvas canvas, float x, float y) {
-        float hw = width / 2 * GameView.MULTIPLIER;
-        float hh = height / 2 * GameView.MULTIPLIER;
+        float hw = (float)GameView.view.getWidth() / 2;
+        float hh = (float)height / 2 * GameView.MULTIPLIER;
 
         dstRect.set(x - hw, y - hh, x + hw, y + hh);
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);

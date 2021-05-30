@@ -21,7 +21,7 @@ public class Enemy implements GameObject {
         this.y = y;
         this.dstY = y + (20 * GameView.MULTIPLIER);
         this.isFalling = false;
-        ibmp = new IndexedGameBitmap(R.mipmap.enemy,68, 20,3,0,0);
+        ibmp = new IndexedGameBitmap(R.mipmap.enemy, 99, 20,3,0,0);
         this.type = index;
         if(index == 0)
             ibmp.setIndex(0);

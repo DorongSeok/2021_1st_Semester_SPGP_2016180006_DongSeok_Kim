@@ -43,7 +43,7 @@ public class Player implements GameObject {
         this.rx = center + 350;
         this.y = y;
         this.x = lx;
-        this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.pikaman, 4.5f, 0);
+        this.charBitmap = new IndexedAnimationGameBitmap(R.mipmap.seeman, 4.5f, 0);
         setState(State.idlel);
     }
 
