@@ -1,40 +1,39 @@
-package kr.ac.kpu.game.s2016180006.cookierun.game;
+package kr.ac.kpu.game.s2016180006.cookierun.game.scenes.main;
 
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
 import kr.ac.kpu.game.s2016180006.cookierun.R;
-import kr.ac.kpu.game.s2016180006.cookierun.framework.game.BaseGame;
+import kr.ac.kpu.game.s2016180006.cookierun.framework.game.Scene;
 import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.GameObject;
 import kr.ac.kpu.game.s2016180006.cookierun.framework.object.HorizontalScrollBackground;
 import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.cookierun.game.ctrl.CollisionChecker;
+import kr.ac.kpu.game.s2016180006.cookierun.game.ctrl.StageMap;
+import kr.ac.kpu.game.s2016180006.cookierun.game.objs.Platform;
+import kr.ac.kpu.game.s2016180006.cookierun.game.objs.Player;
+import kr.ac.kpu.game.s2016180006.cookierun.game.objs.Score;
 
-public class MainGame extends BaseGame {
-    private boolean initialized;
+public class MainScene extends Scene {
     private Player player;
     private Score score;
-
-    public static MainGame get() {
-        return (MainGame) instance;
-    }
     public enum Layer {
-        bg, platform, item, player, ui, controller, LAYER_COUNT
+        bg, platform, item, obstacle, player, ui, controller, LAYER_COUNT
     }
 
+    public static MainScene scene;
     public void add(Layer layer, GameObject obj) {
         add(layer.ordinal(), obj);
     }
-
     public ArrayList<GameObject> objectsAt(Layer layer) {
         return objectsAt(layer.ordinal());
     }
 
     @Override
-    public boolean initResources() {
-        if (initialized) {
-            return false;
-        }
+    public void start() {
+        scene = this;
+        super.start();
         int w = GameView.view.getWidth();
         int h = GameView.view.getHeight();
 
@@ -43,9 +42,7 @@ public class MainGame extends BaseGame {
         add(Layer.controller, new StageMap("stage_01.txt"));
 
         player = new Player(Platform.Type.T_2x2.width(), h / 2);
-        //layers.get(Layer.player.ordinal()).add(player);
         add(Layer.player, player);
-//        add(Layer.controller, new EnemyGenerator());
 
         add(Layer.controller, new CollisionChecker(player));
 
@@ -57,26 +54,6 @@ public class MainGame extends BaseGame {
         add(Layer.bg, new HorizontalScrollBackground(R.mipmap.cookie_run_bg_1, -10));
         add(Layer.bg, new HorizontalScrollBackground(R.mipmap.cookie_run_bg_2, -20));
         add(Layer.bg, new HorizontalScrollBackground(R.mipmap.cookie_run_bg_3, -30));
-//
-//        float tx = 0, ty = h - Platform.Type.T_2x2.height();
-//        while (tx < w) {
-//            Platform platform = new Platform(Platform.Type.RANDOM, tx, ty);
-//            add(Layer.platform, platform);
-//            tx += platform.getDstWidth();
-////        VerticalScrollBackground clouds = new VerticalScrollBackground(R.mipmap.clouds, 20);
-////        add(Layer.bg2, clouds);
-//        }
-
-        initialized = true;
-        return true;
-
-    }
-
-    @Override
-    public void update() {
-        super.update();
-
-        // collision check
     }
 
     @Override

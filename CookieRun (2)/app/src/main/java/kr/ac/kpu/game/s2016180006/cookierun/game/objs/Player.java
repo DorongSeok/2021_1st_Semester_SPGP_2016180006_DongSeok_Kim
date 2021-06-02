@@ -1,4 +1,4 @@
-package kr.ac.kpu.game.s2016180006.cookierun.game;
+package kr.ac.kpu.game.s2016180006.cookierun.game.objs;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -13,6 +13,8 @@ import kr.ac.kpu.game.s2016180006.cookierun.framework.iface.GameObject;
 import kr.ac.kpu.game.s2016180006.cookierun.framework.bitmap.IndexedAnimationGameBitmap;
 import kr.ac.kpu.game.s2016180006.cookierun.framework.game.BaseGame;
 import kr.ac.kpu.game.s2016180006.cookierun.framework.view.GameView;
+import kr.ac.kpu.game.s2016180006.cookierun.game.scenes.main.MainGame;
+import kr.ac.kpu.game.s2016180006.cookierun.game.scenes.main.MainScene;
 
 public class Player implements GameObject, BoxCollidable {
     private static final String TAG = Player.class.getSimpleName();
@@ -103,7 +105,7 @@ public class Player implements GameObject, BoxCollidable {
     private float findNearestPlatformTop() {
         float foot = y + collisionOffsetRect.bottom * GameView.MULTIPLIER;
         MainGame game = (MainGame)BaseGame.get();
-        ArrayList<GameObject> platforms = game.objectsAt(MainGame.Layer.platform);
+        ArrayList<GameObject> platforms = MainScene.scene.objectsAt(MainScene.Layer.platform);
         float top = GameView.view.getHeight();
         for (GameObject obj: platforms) {
             Platform platform = (Platform) obj;
