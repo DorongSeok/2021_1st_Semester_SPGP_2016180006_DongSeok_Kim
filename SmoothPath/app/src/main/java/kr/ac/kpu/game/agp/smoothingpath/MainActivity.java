@@ -1,5 +1,6 @@
 package kr.ac.kpu.game.agp.smoothingpath;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
