@@ -70,6 +70,7 @@ public class MainGame extends BaseGame {
 
     @Override
     public void update() {
+        player.update();
         super.update();
     }
 
@@ -82,15 +83,17 @@ public class MainGame extends BaseGame {
                 e.isFalling = true;
             }
 
-             int center = GameView.view.getWidth() / 2;
-             Random r = new Random();
-             int x = center;
-             int y = -220;
-             int type = r.nextInt(8);
-             Enemy enemy = new Enemy(type, (float) x, (float) y);
-             enemyCnt %= MAX_ENEMY;
-             Enemies.add(enemyCnt++, enemy);
-             add(Layer.enemy, enemy);
+//            if(Enemies.size() < MAX_ENEMY) {
+//                int center = GameView.view.getWidth() / 2;
+//                Random r = new Random();
+//                int x = center;
+//                int y = -220;
+//                int type = r.nextInt(8);
+//                Enemy enemy = new Enemy(type, (float) x, (float) y);
+//                enemyCnt %= MAX_ENEMY;
+//                Enemies.add(enemyCnt++, enemy);
+//                add(Layer.enemy, enemy);
+//            }
 
             player.attack(event.getX());
             score.addScore(1);
