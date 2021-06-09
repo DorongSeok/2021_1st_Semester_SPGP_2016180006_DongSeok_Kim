@@ -20,7 +20,7 @@ public class MainGame extends BaseGame {
     private static int MAX_ENEMY = 12;
 
     ArrayList<Enemy> Enemies = new ArrayList<>();
-    private int enemyCnt = 0;
+    private int enemyCnt = 1;
 
     public  enum Layer{
         bg, fg, enemy, player, ui, LAYER_COUNT
