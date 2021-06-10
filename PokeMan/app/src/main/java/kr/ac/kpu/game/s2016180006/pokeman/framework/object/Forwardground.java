@@ -43,4 +43,16 @@ public class Forwardground implements GameObject {
     public void remove() {
         dstRect.set(0, 0, 0, 0);
     }
+    public void notRemove() {
+        int gap;
+        if(bitmap.getHeight() > GameView.view.getHeight())
+            gap = bitmap.getHeight() - GameView.view.getHeight();
+        else
+            gap = GameView.view.getHeight() - bitmap.getHeight();
+        float l = 0;
+        float r = GameView.view.getWidth();
+        float t = 0;
+        float b = gap + bitmap.getHeight();
+        dstRect.set(l, t, r, b);
+    }
 }

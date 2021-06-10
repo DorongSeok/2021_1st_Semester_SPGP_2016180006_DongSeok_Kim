@@ -38,6 +38,12 @@ public class AnimationGameBitmap extends GameBitmap {
 //        frameIndex = Math.round(elapsed * 0.001f * framesPerSecond) % frameCount;
 //    }
 
+
+    @Override
+    public void changeBitmap(int resId) {
+        super.changeBitmap(resId);
+    }
+
     public void draw(Canvas canvas, float x, float y) {
         int elapsed = (int)(System.currentTimeMillis() - createdOn);
         frameIndex = Math.round(elapsed * 0.001f * framesPerSecond) % frameCount;

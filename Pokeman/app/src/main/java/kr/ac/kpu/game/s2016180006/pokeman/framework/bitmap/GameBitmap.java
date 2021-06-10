@@ -26,10 +26,14 @@ public class GameBitmap {
         return bitmap;
     }
 
-    protected final Bitmap bitmap;
+    protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
 
     public GameBitmap(int resId){
+        bitmap = load(resId);
+    }
+
+    public void changeBitmap(int resId){
         bitmap = load(resId);
     }
 

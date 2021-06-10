@@ -32,6 +32,11 @@ public class IndexedAnimationGameBitmap extends AnimationGameBitmap{
     }
 
     @Override
+    public void changeBitmap(int resId) {
+        super.changeBitmap(resId);
+    }
+
+    @Override
     public void draw(Canvas canvas, float x, float y) {
         int elapsed = (int)(System.currentTimeMillis() - createdOn);
         frameIndex = Math.round(elapsed * 0.001f * framesPerSecond) % frameCount;

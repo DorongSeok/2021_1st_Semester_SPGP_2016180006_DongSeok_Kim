@@ -65,4 +65,13 @@ public class Score implements GameObject {
             value /= 10;
         }
     }
+
+    public void remove()
+    {
+        moveToScore(-100);
+    }
+    public void notRemove()
+    {
+        moveToScore(-985);
+    }
 }

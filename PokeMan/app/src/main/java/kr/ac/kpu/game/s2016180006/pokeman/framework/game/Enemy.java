@@ -11,7 +11,7 @@ import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class Enemy implements GameObject {
     private final IndexedGameBitmap ibmp;
-    private float x;
+    public float x;
     public float y;
     public boolean isFalling;
     public int type;
@@ -36,6 +36,11 @@ public class Enemy implements GameObject {
             ibmp.setIndex(2);
         else
             ibmp.setIndex(1);
+    }
+
+    public void bmpReset()
+    {
+        ibmp.setIndex(1);
     }
 
     public void setxSpeed(float xSpeed) {
