@@ -167,7 +167,7 @@ public class MainGame extends BaseGame {
             else if (gameScene) {
                 for (Enemy e : Enemies) {
                     e.isFalling = true;
-                    if (e.y >= 1530 && e.y <= 1700) {
+                    if ((e.y >= 1500 && e.y <= 1700) || e.floor == 1 ) {
                         if (e.type == 0 && event.getX() < GameView.view.getWidth() / 2) {
                             gameOver();
                         } else if (e.type == 1 && event.getX() > GameView.view.getWidth() / 2) {
@@ -194,6 +194,16 @@ public class MainGame extends BaseGame {
 
                 player.attack(event.getX());
                 score.addScore(1);
+
+                if(score.getScore() == 70) {
+                    player.changeBitmap(R.mipmap.seeman);
+                }
+                else if(score.getScore() == 140){
+                    player.changeBitmap(R.mipmap.pieman);
+                }
+                else if(score.getScore() == 210){
+                    player.changeBitmap(R.mipmap.gangman);
+                }
                 if(score.getScore() != 0 && score.getScore() % 50 == 0){
                     level --;
                     Log.d(TAG, "LEVEL: " + level);
@@ -203,21 +213,12 @@ public class MainGame extends BaseGame {
                     for (Enemy e : Enemies) {
                         e.level = level;
                     }
-                    if(score.getScore() == 70) {
-                        player.changeBitmap(R.mipmap.seeman);
-                    }
-                    else if(score.getScore() == 140){
-                        player.changeBitmap(R.mipmap.pieman);
-                    }
-                    else if(score.getScore() == 210){
-                        player.changeBitmap(R.mipmap.gangman);
-                    }
                 }
                 return true;
             }
             else if (gameOverScene) {
                 if(event.getY() >= 1880 && event.getY() <= 2080) {
-                    if(event.getX() <= GameView.view.getWidth() / 2) {
+                    if (event.getX() <= GameView.view.getWidth() / 2) {
                         gamePause = false;
                         gameOverScene = false;
                         gameScene = true;
@@ -232,10 +233,15 @@ public class MainGame extends BaseGame {
                             e.setxSpeed(0);
                             e.isFalling = true;
                             e.bmpReset();
+                            e.level = level;
                         }
                         gameOverS.remove();
                         score.moveToScore(500);
                         bestScore.remove();
+                        player.changeBitmap(R.mipmap.pikaman);
+                    }
+                    else{
+                        android.os.Process.killProcess(android.os.Process.myPid());
                     }
                 }
                 return true;
