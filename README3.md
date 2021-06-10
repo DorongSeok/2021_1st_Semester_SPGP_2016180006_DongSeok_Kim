@@ -37,10 +37,7 @@ Pokeman
 >    
 > * 애니메이션   
 > Breath, Attack 캐릭터 애니메이션(총 2개) (100%)    
-> <img src="./image/Progress.jpg" width="400px" height="424px" title="Progress" alt="Progress"></img><br/>    
-- - -
-## + Git Commit
-> <img src="./image/GitCommitInsight1.JPG" width="542px" height="260px" title="GitCommitInsight" alt="GitCommitInsight"></img><br/>
+> <img src="./image/dialog.JPG" width="787px" height="565px" title="dialog" alt="dialog"></img><br/>    
 - - -
 ## + 개발 내용
 > * 사용된 기술     
@@ -81,4 +78,6 @@ Pokeman
 > * 어려웠던 점    
 > 기둥 오브젝트를 재활용하려고 코딩할때 클릭하는 속도와 기둥을 생성하는 속도가 어긋나      
 > 중간이 비는 문제를 해결하는데 시간을 매우 많이 투자했다.    
+> <img src="./image/window.jpg" width="270px" height="570px" title="window" alt="window"></img><br/>
+> <img src="./image/bin.JPG" width="270px" height="570px" title="bin" alt="bin"></img><br/>
 - - -
