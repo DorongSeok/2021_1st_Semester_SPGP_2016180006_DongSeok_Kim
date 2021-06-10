@@ -17,11 +17,11 @@ public class MainGame extends BaseGame {
     private Player player;
     private Score score;
     private boolean initialized;
-    private static int MAX_ENEMY = 11;
-    private static float attackPower = 35.f;
+    private static int MAX_ENEMY = 15;
+    private static float attackPower = 55.f;
+    private static float ADD_ENEMY_POSY = -1100;
 
     ArrayList<Enemy> Enemies = new ArrayList<>();
-    private int enemyCnt = 0;
 
     public  enum Layer{
         bg, fg, enemy, player, ui, LAYER_COUNT
@@ -46,11 +46,11 @@ public class MainGame extends BaseGame {
         int center = GameView.view.getWidth() / 2;
         Random r = new Random();
         for(int i = 0; i < MAX_ENEMY; ++i){
-            int x = center;
-            int y = i * 200 - 220;
+            float x = center;
+            float y = ADD_ENEMY_POSY + (i * 200);
             int type = r.nextInt(8);
-            Enemy enemy = new Enemy(type, (float)x, (float)y, MAX_ENEMY - i);
-            Enemies.add(enemyCnt++, enemy);
+            Enemy enemy = new Enemy(type, x, y, MAX_ENEMY - i);
+            Enemies.add(i, enemy);
             add(Layer.enemy, enemy);
         }
 
@@ -82,7 +82,15 @@ public class MainGame extends BaseGame {
             for(Enemy e : Enemies)
             {
                 e.isFalling = true;
-                if(e.floor <= 1 || e.y >= 1800) {
+                if(e.y >= 1500 && e.y <= 1700){
+                    if(e.type == 0 && event.getX() < GameView.view.getWidth() / 2) {
+                        score.setScore(0);
+                    }
+                    else if (e.type == 2 && event.getX() > GameView.view.getWidth() / 2) {
+                        score.setScore(0);
+                    }
+                }
+                if(e.y >= 1700) {
                     Random r = new Random();
                     if (event.getX() > GameView.view.getWidth() / 2) {
                         e.setxSpeed(-(attackPower + r.nextInt(10)));
@@ -91,18 +99,6 @@ public class MainGame extends BaseGame {
                     }
                 }
             }
-
-//            if(Enemies.size() < MAX_ENEMY) {
-//                int center = GameView.view.getWidth() / 2;
-//                Random r = new Random();
-//                int x = center;
-//                int y = -220;
-//                int type = r.nextInt(8);
-//                Enemy enemy = new Enemy(type, (float) x, (float) y);
-//                enemyCnt %= MAX_ENEMY;
-//                Enemies.add(enemyCnt++, enemy);
-//                add(Layer.enemy, enemy);
-//            }
 
             player.attack(event.getX());
             score.addScore(1);
