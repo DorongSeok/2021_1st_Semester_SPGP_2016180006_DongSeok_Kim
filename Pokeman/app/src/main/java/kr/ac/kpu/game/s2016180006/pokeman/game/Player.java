@@ -2,7 +2,6 @@ package kr.ac.kpu.game.s2016180006.pokeman.game;
 
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 import kr.ac.kpu.game.s2016180006.pokeman.R;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.bitmap.IndexedAnimationGameBitmap;
@@ -51,7 +50,7 @@ public class Player implements GameObject {
     }
 
     public void update() {
-        Log.d(TAG, "Player Update, attackTimeCount: " + attackTimeCount);
+//        Log.d(TAG, "Player Update, attackTimeCount: " + attackTimeCount);
         if(attackTimeCount > 0) {
             attackTimeCount--;
             if(attackTimeCount <= 0) {
