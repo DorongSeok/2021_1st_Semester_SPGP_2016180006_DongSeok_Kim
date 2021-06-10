@@ -1,6 +1,7 @@
 package kr.ac.kpu.game.s2016180006.pokeman.game;
 
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class MainGame extends BaseGame {
     private static int level = 10;
     private static int healthCnt = 0;
     private static MediaPlayer mp;
+
+    private int lastType;
 
     private boolean lobbyScene;
     private boolean gameScene;
@@ -65,14 +68,10 @@ public class MainGame extends BaseGame {
         add(Layer.player, player);
 
         int center = GameView.view.getWidth() / 2;
-        Random r = new Random();
         for(int i = 0; i < MAX_ENEMY; ++i){
             float x = center;
             float y = ADD_ENEMY_POSY + (i * 200);
-            int type = r.nextInt(level);
-            if(i == MAX_ENEMY - 1){
-                type = 2;
-            }
+            int type = 2;
             Enemy enemy = new Enemy(type, x, y, MAX_ENEMY - i);
             Enemies.add(i, enemy);
             add(Layer.enemy, enemy);
@@ -98,7 +97,7 @@ public class MainGame extends BaseGame {
     public void update() {
         if(!gamePause) {
             healthCnt++;
-            if (healthCnt % level == 0) {
+            if (healthCnt % (level * 2) == 0) {
                 healthCnt = 0;
                 health.addHealth(-2);
                 if (health.getHealth() == 0) {
@@ -155,7 +154,7 @@ public class MainGame extends BaseGame {
             else if (gameScene) {
                 for (Enemy e : Enemies) {
                     e.isFalling = true;
-                    if (e.y >= 1600 && e.y <= 1700) {
+                    if (e.y >= 1550 && e.y <= 1700) {
                         if (e.type == 0 && event.getX() < GameView.view.getWidth() / 2) {
                             gameOver();
                         } else if (e.type == 1 && event.getX() > GameView.view.getWidth() / 2) {
@@ -172,14 +171,32 @@ public class MainGame extends BaseGame {
                         }
                         health.addHealth(5);
                     }
+                    if(e.floor == 14){
+                        lastType = e.type;
+                    }
+                }
+                for (Enemy e : Enemies) {
+                    e.lastType = lastType;
                 }
 
                 player.attack(event.getX());
                 score.addScore(1);
-                if (score.getScore() % 50 == 0) {
-                    level--;
-                    if (level < 3) {
+                if(score.getScore() != 0 && score.getScore() % 50 == 0){
+                    level --;
+                    Log.d(TAG, "LEVEL: " + level);
+                    if(level < 3) {
                         level = 3;
+                    }
+                    for (Enemy e : Enemies) {
+                        e.level = level;
+                    }
+                }
+                return true;
+            }
+            else if (gameOverScene) {
+                if(event.getY() >= 1880 && event.getY() <= 2080) {
+                    if(event.getX() >= GameView.view.getWidth() / 2) {
+
                     }
                 }
                 return true;

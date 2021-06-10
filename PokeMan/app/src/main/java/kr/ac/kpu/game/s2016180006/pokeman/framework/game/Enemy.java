@@ -15,7 +15,9 @@ public class Enemy implements GameObject {
     public float y;
     public boolean isFalling;
     public int type;
+    public int lastType;
     private static float FALLING_SPEED = 1400;
+    public int level = 10;
     public int floor;
     private float xSpeed;
     private float[] dstY = {1900.f, 1700.f, 1500.f, 1300.f, 1100.f, 900.f, 700.f, 500.f, 300.f, 100.f, -100.f, -300.f, -500.f, -700.f, -900.f, -1100.f};
@@ -58,13 +60,26 @@ public class Enemy implements GameObject {
                     x = GameView.view.getWidth() / 2;
                     y -= 3000;
                     isFalling = false;
-                    type = r.nextInt(8);
-                    if(this.type == 0)
-                        ibmp.setIndex(0);
-                    else if(this.type == 1)
-                        ibmp.setIndex(2);
-                    else
+                    type = r.nextInt(level);
+                    if(this.type == 0) {
+                        if(lastType == 1){
+                            this.type = 1;
+                            ibmp.setIndex(2);
+                        }else {
+                            ibmp.setIndex(0);
+                        }
+                    }
+                    else if(this.type == 1) {
+                        if(lastType == 0){
+                            this.type = 0;
+                            ibmp.setIndex(0);
+                        }else {
+                            ibmp.setIndex(2);
+                        }
+                    }
+                    else {
                         ibmp.setIndex(1);
+                    }
                 }
             }
         }
