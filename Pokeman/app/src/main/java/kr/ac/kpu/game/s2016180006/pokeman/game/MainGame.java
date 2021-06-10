@@ -1,5 +1,6 @@
 package kr.ac.kpu.game.s2016180006.pokeman.game;
 
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -11,23 +12,35 @@ import kr.ac.kpu.game.s2016180006.pokeman.framework.game.Enemy;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.object.Forwardground;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.object.VerticalScrollBackground;
+import kr.ac.kpu.game.s2016180006.pokeman.framework.utils.Sound;
 import kr.ac.kpu.game.s2016180006.pokeman.framework.view.GameView;
 
 public class MainGame extends BaseGame {
+    private static final String TAG = MainGame.class.getSimpleName();
     private Player player;
     private Score score;
+    private Score bestScore;
+    private int bestScoreCnt = 0;
     private Health health;
+    private Forwardground lobby;
+    private Forwardground gameOverS;
     private boolean initialized;
     private static int MAX_ENEMY = 15;
     private static float attackPower = 55.f;
     private static float ADD_ENEMY_POSY = -1100;
     private static int level = 10;
     private static int healthCnt = 0;
+    private static MediaPlayer mp;
+
+    private boolean lobbyScene;
+    private boolean gameScene;
+    private boolean gameOverScene;
+    private boolean gamePause;
 
     ArrayList<Enemy> Enemies = new ArrayList<>();
 
     public  enum Layer{
-        bg, fg, enemy, player, ui, LAYER_COUNT
+        bg, fg, enemy, player, ui, lobby , score, LAYER_COUNT
     }
 
     public void add(Layer layer, GameObject obj){
@@ -35,6 +48,11 @@ public class MainGame extends BaseGame {
     }
     @Override
     public boolean initResources() {
+        lobbyScene = true;
+        gamePause = true;
+        gameScene = false;
+        gameOverScene = false;
+
         if (initialized) {
             return false;
         }
@@ -52,18 +70,16 @@ public class MainGame extends BaseGame {
             float x = center;
             float y = ADD_ENEMY_POSY + (i * 200);
             int type = r.nextInt(level);
+            if(i == MAX_ENEMY - 1){
+                type = 2;
+            }
             Enemy enemy = new Enemy(type, x, y, MAX_ENEMY - i);
             Enemies.add(i, enemy);
             add(Layer.enemy, enemy);
         }
-
         score = new Score(w / 2,  500);
         score.setScore(0);
-        add(Layer.ui, score);
-
-        health = new Health(w / 2, 300);
-        health.setHealth(100);
-        add(Layer.ui, health);
+        add(Layer.score, score);
 
         VerticalScrollBackground bg = new VerticalScrollBackground(R.mipmap.poke_bg, 10);
         add(Layer.bg, bg);
@@ -71,59 +87,103 @@ public class MainGame extends BaseGame {
         Forwardground fg = new Forwardground(R.mipmap.poke_fg);
         add(Layer.fg, fg);
 
+        lobby = new Forwardground(R.mipmap.lobby_scene);
+        add(Layer.lobby, lobby);
+
         initialized = true;
         return true;
     }
 
     @Override
     public void update() {
-        healthCnt++;
-        if(healthCnt % level == 0){
-            healthCnt = 0;
-            health.addHealth(-2);
-            if(health.getHealth() == 0){
-                score.setScore(10000);
+        if(!gamePause) {
+            healthCnt++;
+            if (healthCnt % level == 0) {
+                healthCnt = 0;
+                health.addHealth(-2);
+                if (health.getHealth() == 0) {
+                    gameOver();
+                }
             }
+            player.update();
+            super.update();
         }
-        player.update();
-        super.update();
+    }
+
+    public void gameOver() {
+        gameScene = false;
+        gameOverScene = true;
+        gamePause = true;
+
+        Sound.play(R.raw.death_sound);
+
+        gameOverS = new Forwardground(R.mipmap.gameover_scene);
+        add(Layer.lobby, gameOverS);
+
+        bestScore = new Score(GameView.view.getWidth() / 2,  985);
+
+        if(bestScoreCnt<score.getScore()){
+            bestScoreCnt = score.getScore();
+        }
+        bestScore.setScore(bestScoreCnt);
+        add(Layer.score, bestScore);
+
+        score.moveToScore(1375);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
-            for(Enemy e : Enemies)
-            {
-                e.isFalling = true;
-                if(e.y >= 1500 && e.y <= 1700){
-                    if(e.type == 0 && event.getX() < GameView.view.getWidth() / 2) {
-                        score.setScore(0);
-                    }
-                    else if (e.type == 2 && event.getX() > GameView.view.getWidth() / 2) {
-                        score.setScore(0);
-                    }
-                }
-                if(e.y >= 1700) {
-                    Random r = new Random();
-                    if (event.getX() > GameView.view.getWidth() / 2) {
-                        e.setxSpeed(-(attackPower + r.nextInt(10)));
-                    } else {
-                        e.setxSpeed(attackPower + r.nextInt(10));
-                    }
-                    health.addHealth(5);
-                }
-            }
+            if (lobbyScene) {
+//                Log.d(TAG, "x: " + event.getX() + " y: " + event.getY());
 
-            player.attack(event.getX());
-            score.addScore(1);
-            if(score.getScore() % 50 == 0){
-                level --;
-                if(level < 3){
-                    level = 3;
+                if(event.getX() >= GameView.view.getWidth() / 2 - 350 && event.getX() <= GameView.view.getWidth() / 2 + 350 &&
+                event.getY() >= 1880 && event.getY() <= 2080) {
+                    lobbyScene = false;
+                    gamePause = false;
+                    gameScene = true;
+                    health = new Health(GameView.view.getWidth() / 2, 300);
+                    health.setHealth(100);
+                    add(Layer.ui, health);
+
+                    lobby.remove();
+
+                    return true;
                 }
             }
-            return true;
+            else if (gameScene) {
+                for (Enemy e : Enemies) {
+                    e.isFalling = true;
+                    if (e.y >= 1600 && e.y <= 1700) {
+                        if (e.type == 0 && event.getX() < GameView.view.getWidth() / 2) {
+                            gameOver();
+                        } else if (e.type == 1 && event.getX() > GameView.view.getWidth() / 2) {
+                            gameOver();
+                        }
+                    }
+                    if (e.y >= 1700) {
+                        Sound.play(R.raw.attack_sound);
+                        Random r = new Random();
+                        if (event.getX() > GameView.view.getWidth() / 2) {
+                            e.setxSpeed(-(attackPower + r.nextInt(10)));
+                        } else {
+                            e.setxSpeed(attackPower + r.nextInt(10));
+                        }
+                        health.addHealth(5);
+                    }
+                }
+
+                player.attack(event.getX());
+                score.addScore(1);
+                if (score.getScore() % 50 == 0) {
+                    level--;
+                    if (level < 3) {
+                        level = 3;
+                    }
+                }
+                return true;
+            }
         }
         return false;
     }

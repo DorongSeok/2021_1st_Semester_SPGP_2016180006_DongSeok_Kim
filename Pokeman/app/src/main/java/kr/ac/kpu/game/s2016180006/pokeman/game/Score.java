@@ -12,7 +12,7 @@ import kr.ac.kpu.game.s2016180006.pokeman.framework.iface.GameObject;
 public class Score implements GameObject {
     private final Bitmap bitmap;
     private final int right;
-    private final int top;
+    private int top;
 
     public void setScore(int score) {
         this.score = score;
@@ -20,6 +20,10 @@ public class Score implements GameObject {
     }
     public int getScore() {
         return score;
+    }
+
+    public void moveToScore(int top){
+        this.top = top;
     }
 
     public void addScore(int amount) {

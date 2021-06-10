@@ -39,4 +39,8 @@ public class Forwardground implements GameObject {
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
     }
+
+    public void remove() {
+        dstRect.set(0, 0, 0, 0);
+    }
 }
