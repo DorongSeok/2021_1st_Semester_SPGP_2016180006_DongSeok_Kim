@@ -42,10 +42,6 @@ public class Enemy implements GameObject {
         }
     }
 
-    public float getxSpeed() {
-        return xSpeed;
-    }
-
     @Override
     public void update() {
         BaseGame game = BaseGame.get();
